@@ -8,7 +8,7 @@ const reducer = (state, action) => {
     case 'add':
       const newTask = {
         id:  Math.random(),
-        name: action.payload
+        name: action.payload.name
       }
       return [...state, newTask ]
 
@@ -27,13 +27,15 @@ function App() {
 
   const [taskInput, setTaskInput] = useState('')
 
-  const handleAddTask = (task: string) => {
-    dispatch({type: 'add', payload: task})
+  const handleAddTask = (taskName: string) => {
+    dispatch({type: 'add', payload: {
+      name: taskName
+    }})
   }
 
-  const handleDeleteTask = (id: number) => {
+  const handleDeleteTask = (taskId: number) => {
     dispatch({type: 'delete', payload: {
-      id: id
+      id: taskId
     }})
   }
 
